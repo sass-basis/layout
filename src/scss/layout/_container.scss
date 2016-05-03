@@ -52,6 +52,11 @@ body {
 	flex: none;
 }
 
+.#{$bs-prefix}l-contents {
+	flex: 1 0 auto;
+	overflow: hidden;
+}
+
 .#{$bs-prefix}l-container {
 	overflow-y: auto;
 	height: 100%;
@@ -70,9 +75,5 @@ body {
 	&--sticky-footer {
 		display: flex;
 		flex-direction: column;
-
-		> .#{$bs-prefix}l-contents {
-			flex: 1 0 auto;
-		}
 	}
 }
