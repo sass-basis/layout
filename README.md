@@ -7,8 +7,10 @@ This is a css module for sass-basis.
 
 ## Get Started
 1. `$ npm install sass-basis`
-2. Import `src/scss/layout/_container.scss` your Sass/SCSS.
-3. Import `src/js/fixed-header.js` when using `.l-container--overlay-header`
+1. `$ npm install sass-basis-layout`
+1. Import `node_modules/sass-basis-layout/src/scss/basis.scss`
+1. Import `node_modules/sass-basis-layout/src/scss/layout/_container.scss`
+1. Import `node_modules/sass-basis-layout/src/js/fixed-header.js` when using `.l-container--overlay-header`
 
 ## Browser support
 Modern Browser and IE10+
