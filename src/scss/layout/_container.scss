@@ -16,6 +16,34 @@
 //     </footer>
 // </div>
 //
+
+.#{$bs-prefix}l-container {
+  &--overlay-header {
+    > .#{$bs-prefix}l-header {
+      position: fixed;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  &--sticky-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+}
+
+.#{$bs-prefix}l-header,
+.#{$bs-prefix}l-footer {
+  flex: none;
+}
+
+.#{$bs-prefix}l-contents {
+  flex: 1 0 auto;
+  overflow: hidden;
+}
+
 //
 // If you want to fixed header
 //
@@ -37,43 +65,22 @@
 // </footer>
 //
 
-html, body {
-	overflow: hidden;
-	height: 100%;
-}
+html.#{$bs-prefix}disable-window-scroll {
+  &, body {
+    overflow: hidden;
+    height: 100%;
+  }
 
-body {
-	display: flex;
-	flex-direction: column;
-}
+  body {
+    display: flex;
+    flex-direction: column;
+  }
 
-.#{$bs-prefix}l-header,
-.#{$bs-prefix}l-footer {
-	flex: none;
-}
-
-.#{$bs-prefix}l-contents {
-	flex: 1 0 auto;
-	overflow: hidden;
-}
-
-.#{$bs-prefix}l-container {
-	overflow-y: auto;
-	height: 100%;
-	flex: auto;
-
-	&--overlay-header {
-		> .#{$bs-prefix}l-header {
-			position: absolute;
-			top: 0;
-			right: 0;
-			left: 0;
-			z-index: 1;
-		}
-	}
-
-	&--sticky-footer {
-		display: flex;
-		flex-direction: column;
-	}
+  .#{$bs-prefix}l-container {
+    display: block;
+    overflow-y: auto;
+    height: 100%;
+    min-height: 0;
+    flex: auto;
+  }
 }
