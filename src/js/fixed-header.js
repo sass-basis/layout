@@ -1,3 +1,7 @@
+/**
+ * IF "disable-window-scroll", to set the intended header width.
+ */
+
 'use strict';
 
 export default class BasisFixedHeader {
@@ -5,52 +9,37 @@ export default class BasisFixedHeader {
     if (!container) {
       container = '._l-container';
     }
+
+    this.params    = this.setParams(params);
+    this.container = document.querySelector(container);
+    this.header    = document.querySelector(this.params.header);
+    this.isDisableWindowScroll = document.getElementsByTagName('html')[0].classList.contains('_disable-window-scroll');
+
+    if (this.shouldSetHeaderWidth()) {
+      this.setHeaderWidth();
+
+      window.addEventListener('resize', (event) => {
+        this.setHeaderWidth();
+      }, false);
+    }
+  }
+
+  setParams(params) {
     if (!params) {
       params = {};
     }
-    this.params = params;
-    if (!this.params.header) {
-      this.params.header = '._l-header';
+    if (!params.header) {
+      params.header = '._l-header';
     }
-    if (!this.params.class) {
-      this.params.class = '_l-header--is-scrolled';
-    }
-
-    this.container = document.querySelector(container);
-    this.header    = document.querySelector(this.params.header);
-    this.setHeaderWidth();
-    this.setListener();
+    return params;
   }
 
-  setListener() {
-    const isDisableWindowScroll = document.getElementsByTagName('html')[0].classList.contains('_disable-window-scroll');
-    let target;
-    if (isDisableWindowScroll) {
-      target = this.container;
-    } else {
-      target = window;
+  shouldSetHeaderWidth() {
+    const position = document.defaultView.getComputedStyle(this.header, null).position;
+    if (position === 'fixed' && this.isDisableWindowScroll) {
+      return true;
     }
-
-    target.addEventListener('scroll', (event) => {
-      let scroll = 0;
-      if (isDisableWindowScroll) {
-        scroll = this.container.scrollTop;
-      } else {
-        scroll = window.pageYOffset;
-      }
-      if (!isDisableWindowScroll) {
-        target = window;
-      }
-      if (scroll > 0) {
-        this.header.classList.add(this.params.class);
-      } else {
-        this.header.classList.remove(this.params.class);
-      }
-    }, false);
-
-    window.addEventListener('resize', (event) => {
-      this.setHeaderWidth();
-    }, false);
+    return false;
   }
 
   setHeaderWidth() {
