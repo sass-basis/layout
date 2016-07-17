@@ -16,6 +16,8 @@ export default class BasisOverlayHeader {
     this.header    = document.querySelector(this.params.header);
     this.isDisableWindowScroll = document.getElementsByTagName('html')[0].classList.contains('_disable-window-scroll');
 
+    this.setClassForScroll();
+    this.setClassForSticky();
     this.setListener();
   }
 
@@ -41,13 +43,14 @@ export default class BasisOverlayHeader {
   setListener() {
     const target = this.getScrollTarget();
     target.addEventListener('scroll', (event) => {
-      const scroll = this.getScrollTop();
-      this.setClassForScroll(scroll);
-      this.setClassForSticky(scroll);
+      this.setClassForScroll();
+      this.setClassForSticky();
     }, false);
   }
 
-  setClassForScroll(scroll) {
+  setClassForScroll() {
+    const scroll = this.getScrollTop();
+
     if (scroll > 0) {
       this.header.classList.add(this.params.class_scroll);
     } else {
@@ -55,7 +58,9 @@ export default class BasisOverlayHeader {
     }
   }
 
-  setClassForSticky(scroll) {
+  setClassForSticky() {
+    const scroll = this.getScrollTop();
+
     if (this.header.classList.contains(this.params.class_sticky)) {
       const header_height = this.header.offsetHeight;
       if (scroll > 0) {
@@ -65,6 +70,8 @@ export default class BasisOverlayHeader {
         this.header.nextElementSibling.style.paddingTop = 0;
         this.header.classList.remove(this.params.class_overlay);
       }
+    } else {
+      this.header.nextElementSibling.style.paddingTop = '';
     }
   }
 
