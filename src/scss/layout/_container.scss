@@ -37,6 +37,14 @@
     left: 0;
     z-index: 1;
   }
+
+  &--sticky {
+    // Used js
+  }
+
+  &--is-scrolled {
+    // Used js
+  }
 }
 
 .#{$bs-prefix}l-contents {
@@ -44,7 +52,7 @@
 }
 
 //
-// If you want to fixed header
+// If you want to fixed header with ._disable-window-scroll
 //
 // <header id="header" class="_l-header" role="banner">
 //     ...

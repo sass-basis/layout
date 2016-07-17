@@ -24,25 +24,48 @@ export default class BasisOverlayHeader {
       params = {};
     }
     if (!params.header) {
-      params.header = '._l-header--overlay';
+      params.header = '._l-header';
     }
-    if (!params.class) {
-      params.class = '_l-header--is-scrolled';
+    if (!params.class_sticky) {
+      params.class_sticky = '_l-header--sticky';
+    }
+    if (!params.class_overlay) {
+      params.class_overlay = '_l-header--overlay';
+    }
+    if (!params.class_scroll) {
+      params.class_scroll = '_l-header--is-scrolled';
     }
     return params;
   }
 
   setListener() {
     const target = this.getScrollTarget();
-
     target.addEventListener('scroll', (event) => {
       const scroll = this.getScrollTop();
-      if (scroll > 0) {
-        this.header.classList.add(this.params.class);
-      } else {
-        this.header.classList.remove(this.params.class);
-      }
+      this.setClassForScroll(scroll);
+      this.setClassForSticky(scroll);
     }, false);
+  }
+
+  setClassForScroll(scroll) {
+    if (scroll > 0) {
+      this.header.classList.add(this.params.class_scroll);
+    } else {
+      this.header.classList.remove(this.params.class_scroll);
+    }
+  }
+
+  setClassForSticky(scroll) {
+    if (this.header.classList.contains(this.params.class_sticky)) {
+      const header_height = this.header.offsetHeight;
+      if (scroll > 0) {
+        this.header.nextElementSibling.style.paddingTop = header_height + 'px';
+        this.header.classList.add(this.params.class_overlay);
+      } else {
+        this.header.nextElementSibling.style.paddingTop = 0;
+        this.header.classList.remove(this.params.class_overlay);
+      }
+    }
   }
 
   getScrollTarget() {
