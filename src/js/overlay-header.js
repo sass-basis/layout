@@ -42,7 +42,13 @@ export default class BasisOverlayHeader {
 
   setListener() {
     const target = this.getScrollTarget();
+
     target.addEventListener('scroll', (event) => {
+      this.setClassForScroll();
+      this.setClassForSticky();
+    }, false);
+
+    target.addEventListener('resize', (event) => {
       this.setClassForScroll();
       this.setClassForSticky();
     }, false);
@@ -67,7 +73,7 @@ export default class BasisOverlayHeader {
         this.header.nextElementSibling.style.paddingTop = header_height + 'px';
         this.header.classList.add(this.params.class_overlay);
       } else {
-        this.header.nextElementSibling.style.paddingTop = 0;
+        this.header.nextElementSibling.style.paddingTop = '';
         this.header.classList.remove(this.params.class_overlay);
       }
     } else {
