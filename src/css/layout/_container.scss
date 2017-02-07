@@ -1,0 +1,39 @@
+html[data-sticky-footer="true"] [data-l="container"],
+html[data-window-scroll="false"] {
+  > [data-l="header"],
+  > [data-l="footer"] {
+    flex: none;
+  }
+}
+
+html[data-sticky-footer="true"] [data-l="container"] {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > [data-l="contents"] {
+    flex: 1 0 auto;
+  }
+}
+
+[data-l-header-type="overlay"],
+html[data-scrolled="true"] [data-l-header-type="sticky"] {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+html[data-window-scroll="false"] {
+  &, body {
+    overflow: hidden;
+  }
+
+  [data-l="container"] {
+    display: block;
+    overflow-y: auto;
+    height: 100vh;
+    min-height: 0;
+    flex: auto;
+  }
+}
