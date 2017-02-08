@@ -16,8 +16,7 @@ html[data-sticky-footer="true"] [data-l="container"] {
   }
 }
 
-[data-l-header-type="overlay"],
-html[data-scrolled="true"] [data-l-header-type="sticky"] {
+[data-l-header-type="overlay"], [data-l-header-type="sticky"] {
   position: fixed;
   right: 0;
   left: 0;

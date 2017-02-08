@@ -41,14 +41,8 @@ export default class BasisStickyHeader {
     if ('sticky' !== this.header.attr('data-l-header-type')) {
       return;
     }
-
-    const scroll = this.getScrollTop();
-    if (scroll > 0) {
-      const headerHeight = this.header.outerHeight();
-      this.contents.css('paddingTop', `${headerHeight}px`);
-    } else {
-      this.contents.css('paddingTop', '');
-    }
+    const headerHeight = this.header.outerHeight();
+    this.contents.css('marginTop', `${headerHeight}px`);
   }
 
   getScrollTarget() {
