@@ -15,7 +15,7 @@ $ yarn add sass-basis
 $ yarn add sass-basis-layout
 ```
 
-### Stylus
+### Sass
 ```
 @import 'node_modules/sass-basis-layout/src/css/basis';
 @import 'node_modules/sass-basis-layout/src/css/layout/container';
@@ -30,6 +30,7 @@ The header fixed to top and the contents is under the header.
 <div class="_l-container" data-l="container">
   <header class="_l-header" data-l="header" data-l-header-type="sticky"></header>
   <div class="_l-contents" data-l="contents"></div>
+  <footer class="_l-footer" data-l="footer"></footer>
 </div>
 ```
 
@@ -48,6 +49,7 @@ The header fixed to top and overlay the contents.
 <div class="_l-container" data-l="container">
   <header class="_l-header" data-l="header" data-l-header-type="overlay"></header>
   <div class="_l-contents" data-l="contents"></div>
+  <footer class="_l-footer" data-l="footer"></footer>
 </div>
 ```
 
@@ -67,6 +69,7 @@ The footer fixed to bottom when the contents is smaller than the height of the w
   <div class="_l-container" data-l="container">
     <header class="_l-header" data-l="header"></header>
     <div class="_l-contents" data-l="contents"></div>
+    <footer class="_l-footer" data-l="footer"></footer>
   </div>
 </html>
 ```
@@ -81,6 +84,7 @@ Scroll the contents of the page instead of scrolling the window.
   <div class="_l-container" data-l="container">
     <header class="_l-header" data-l="header"></header>
     <div class="_l-contents" data-l="contents"></div>
+    <footer class="_l-footer" data-l="footer"></footer>
   </div>
 </html>
 ```
