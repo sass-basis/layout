@@ -27,17 +27,21 @@ The header fixed to top and the contents is under the header.
 
 ### HTML
 ```
-<div class="_l-container" data-l="container">
-  <header class="_l-header" data-l="header" data-l-header-type="sticky"></header>
-  <div class="_l-contents" data-l="contents"></div>
-  <footer class="_l-footer" data-l="footer"></footer>
+<div class="l-container">
+  <header class="l-header" data-l-header-type="sticky"></header>
+  <div class="l-contents"></div>
+  <footer class="l-footer"></footer>
 </div>
 ```
 
 ### JavaScript
 ```
 import BasisStickyHeader from 'node_modules/sass-basis-layout/src/js/sticky-header.js';
-new BasisStickyHeader();
+new BasisStickyHeader({
+  container: '.l-container',
+  header   : '.l-header',
+  contents : '.l-contents'
+});
 ```
 
 ## Using overlay header
@@ -46,17 +50,20 @@ The header fixed to top and overlay the contents.
 
 ### HTML
 ```
-<div class="_l-container" data-l="container">
-  <header class="_l-header" data-l="header" data-l-header-type="overlay"></header>
-  <div class="_l-contents" data-l="contents"></div>
-  <footer class="_l-footer" data-l="footer"></footer>
+<div class="_l-container">
+  <header class="_l-header" data-l-header-type="overlay"></header>
+  <div class="_l-contents"></div>
+  <footer class="_l-footer"></footer>
 </div>
 ```
 
 ### JavaScript
 ```
-import BasisStickyHeader from 'node_modules/sass-basis-layout/src/js/sticky-header.js';
-new BasisStickyHeader();
+import BasisFixedHeader from 'node_modules/sass-basis-layout/src/js/fixed-header.js';
+new BasisFixedHeader({
+  container: '.l-container',
+  header   : '.l-header'
+});
 ```
 
 ## Using sticky footer
@@ -66,10 +73,10 @@ The footer fixed to bottom when the contents is smaller than the height of the w
 ### HTML
 ```
 <html data-sticky-footer="true">
-  <div class="_l-container" data-l="container">
-    <header class="_l-header" data-l="header"></header>
-    <div class="_l-contents" data-l="contents"></div>
-    <footer class="_l-footer" data-l="footer"></footer>
+  <div class="l-container">
+    <header class="l-header"></header>
+    <div class="l-contents"></div>
+    <footer class="l-footer"></footer>
   </div>
 </html>
 ```
@@ -81,10 +88,10 @@ Scroll the contents of the page instead of scrolling the window.
 ### HTML
 ```
 <html data-window-scroll="false">
-  <div class="_l-container" data-l="container">
-    <header class="_l-header" data-l="header"></header>
-    <div class="_l-contents" data-l="contents"></div>
-    <footer class="_l-footer" data-l="footer"></footer>
+  <div class="l-container">
+    <header class="l-header"></header>
+    <div class="l-contents"></div>
+    <footer class="l-footer"></footer>
   </div>
 </html>
 ```
@@ -95,9 +102,17 @@ When with using sticky or overlay header.
 
 ```
 import BasisStickyHeader from 'node_modules/sass-basis-layout/src/js/sticky-header.js';
+new BasisStickyHeader({
+  container: '.l-container',
+  header   : '.l-header',
+  contents : '.l-contents'
+});
+
 import BasisFixedHeader from 'node_modules/sass-basis-layout/src/js/fixed-header.js';
-new BasisStickyHeader();
-new BasisFixedHeader();
+new BasisFixedHeader({
+  container: '.l-container',
+  header   : '.l-header'
+});
 ```
 
 ## Browser support

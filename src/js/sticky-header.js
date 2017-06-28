@@ -7,10 +7,13 @@
 import $ from 'jquery';
 
 export default class BasisStickyHeader {
-  constructor() {
-    this.container = $('[data-l="container"]');
-    this.header    = $('[data-l="header"]');
-    this.contents  = $('[data-l="contents"]');
+  constructor(args = {}) {
+    this.args = $.extend({
+      container: '.l-container',
+      header   : '.l-header',
+      contents : '.l-contents'
+    }, args);
+
     this.windowScroll = $('html').attr('data-window-scroll');
 
     this.setScroll();
@@ -38,16 +41,16 @@ export default class BasisStickyHeader {
   }
 
   setSticky() {
-    if ('sticky' !== this.header.attr('data-l-header-type')) {
+    if ('sticky' !== $(this.args.header).attr('data-l-header-type')) {
       return;
     }
-    const headerHeight = this.header.outerHeight();
-    this.contents.css('marginTop', `${headerHeight}px`);
+    const headerHeight = $(this.args.header).outerHeight();
+    $(this.args.contents).css('marginTop', `${headerHeight}px`);
   }
 
   getScrollTarget() {
     if ('false' == this.windowScroll) {
-      return this.container;
+      return $(this.args.container);
     } else {
       return $(window);
     }

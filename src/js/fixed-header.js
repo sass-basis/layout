@@ -7,9 +7,12 @@
 import $ from 'jquery';
 
 export default class BasisFixedHeader {
-  constructor() {
-    this.container = $('[data-l="container"]');
-    this.header    = $('[data-l="header"]');
+  constructor(args = {}) {
+    this.args = $.extend({
+      container: '.l-container',
+      header   : '.l-header'
+    }, args);
+
     this.windowScroll = $('html').attr('data-window-scroll');
 
     if (this.shouldSetHeaderWidth()) {
@@ -22,7 +25,7 @@ export default class BasisFixedHeader {
   }
 
   shouldSetHeaderWidth() {
-    const position = this.header.css('position');
+    const position = $(this.args.header).css('position');
     if ('fixed' === position && 'false' == this.windowScroll) {
       return true;
     }
@@ -30,9 +33,9 @@ export default class BasisFixedHeader {
   }
 
   setHeaderWidth() {
-    const scrollbarWidth = $('body').innerWidth() - this.container[0].clientWidth;
+    const scrollbarWidth = $('body').innerWidth() - $(this.args.container)[0].clientWidth;
     if (scrollbarWidth > 0) {
-      this.header.width('calc(100% - ' + scrollbarWidth + 'px)');
+      $(this.args.header).width('calc(100% - ' + scrollbarWidth + 'px)');
     }
   }
 }
