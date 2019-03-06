@@ -6,5 +6,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/sass-basis/layout"
+  },
+  "dependencies": {
+    "@inc2734/add-custom-event": "^0.1.0"
   }
 }
